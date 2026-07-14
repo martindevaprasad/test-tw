@@ -1,4 +1,7 @@
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5002/graphql';
+const API_URL = import.meta.env.VITE_API_URL || 
+  (window.location.hostname.endsWith('vercel.app') 
+    ? `https://${window.location.hostname}/api/graphql` 
+    : 'http://localhost:5002/graphql');
 
 async function gql(query: string, variables: Record<string, any> = {}, token?: string | null) {
   const res = await fetch(API_URL, {
