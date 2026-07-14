@@ -9,7 +9,10 @@ import { resolvers } from '../src/graphql/resolvers';
 const app = express();
 
 app.use(cors({
-  origin: true,
+  origin: (origin, callback) => {
+    // Allows all origins during cross-domain API calls
+    callback(null, true);
+  },
   credentials: true,
 }));
 app.use(express.json());
